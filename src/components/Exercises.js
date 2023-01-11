@@ -3,9 +3,9 @@ import Pagination from '@mui/material/Pagination';
 import { Box, Stack, Typography } from '@mui/material';
 
 import { fetchData, exerciseOptions } from '../utils/fetchData';
-import ExersiceCard from './ExerciseCard';
+import ExerciseCard from './ExerciseCard';
 
-const Exercises = ({ setExercises, exercises, bodyPart }) => {
+const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
@@ -19,7 +19,6 @@ const Exercises = ({ setExercises, exercises, bodyPart }) => {
       } else {
         exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions);
       }
-
       setExercises(exercisesData);
     };
 
@@ -47,7 +46,7 @@ const Exercises = ({ setExercises, exercises, bodyPart }) => {
       </Typography>
       <Stack direction="row" sx={{ gap: { lg: '110px', xs: '50px' } }} flexWrap="wrap" justifyContent="center">
         {currentExercises.map((exercise, index) => (
-          <ExersiceCard key={index} exercise={exercise} />
+          <ExerciseCard key={index} exercise={exercise} />
         ))}
       </Stack>
       <Stack mt="100px" alignItems="center">
